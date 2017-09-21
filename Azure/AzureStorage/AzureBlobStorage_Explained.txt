@@ -1,0 +1,161 @@
+1. It is a persistent cloud data storage
+2. Azure hosted storage allows you upload large amounts of unstructured data
+3. Serving images or dcouments
+4. Storing files for distributed access
+5. Streaming video and audio
+6. Storing data for analysis by an on-premises or Azure hosted service
+
+--------
+Storage
+--------
+
+Account: This would be your azure storage account
+
+Containers: These belong to Account, and using the group Blob. Each account can have unlimited number of containers, and each container may contain an unlimited number of blobs
+
+Blobs: Blobs represent the Azure hosted data that represent the originally uploaded binary data. It is the blobs that you would eventua end up loading when you share an Azure blob storage url
+
+Two Type of Blob storages
+Block Blobs - These are binary blocks of up to 200GB.
+
+Page Blobs - 1 TB and consists of collection of 512 pages.
+
+--------------------------------------------------------------------------------
+
+Azure explorer can be used to manage the blob storage
+Create a new container - set the access level
+Within the container you could upload Blob or Page Blobs
+
+--------------------------------------------------------------------------------
+
+Programming:-
+Create a web app and create a web form
+Add package - Windows Azure storage - Install from package manager
+	      Azure storage Client also install
+
+Make it defaul web page - open web.config
+System.WebServer>
+ DefaultDocument>
+   <files>
+	<clear/>
+	<add value="WebForm.aspz"
+   
+C# files :-
+Using Microsoft.WindowsAzure.Storage.Auth
+Microsoft.WindowsAzure.Storage.Blbo
+Microsoft.WindowsAzure.Storage
+using System.IO;
+
+Page_Load()
+{
+	// Manage account from Online account. Manage Access Keys
+	string accountName = "";
+	string accountKey = "";
+
+	try{
+		StorageCredentials cred = new StorageCredentials(accountName, accountKey);
+		CloudStoragaeAccount account = new CloudStorageAccount(cred, useHttps:true);
+		CloudBlobClient client = account.CreateClouldBlobClient();
+		CloudBlobContainer sampleContainer = client.GetContainerReference("sameple1");
+		
+		sampleContainer.CreateIfNotExists();
+		sampleContainer.SetPermissions(new BlobContainePermissions{
+			PublicAccess = BlobContainerPublicAccessType.Blob });
+		
+		CloudBlockBlob blob = sampleContainer.GetBlockBlobReference("myBlob.jpg");
+		using(Stream file = System.IO.File.OpenRead(@"D:\a1.jpg"))
+		{
+			blob.UploadFromStream(file);
+		}
+
+
+
+	}
+	catch(Exception ex)
+	{
+	}
+}
+
+
+In Premium storage we have only BLOB storage
+and in Standard on we have BLOB, Files, Tables and Queues
+
+-------------------------------------------------------
+Deep Dive Into Storage
+-------------------------------------------------------
+
+Azure file Storage
+------------------
+
+SMB 3.0 encrypted from on-prem to cloud
+
+VM - Azure US-East - Azure US-West
+Rich support - using REST Api
+Support - SAS Shared access signature - based on file token
+CORS for direct access from browser clients
+Storage client library in Java .net etc.
+
+DEMO:-
+======
+
+portal.azure.com
+
+DEMO 1
+-------
+Click on File Share:- Name demofileshare
+Quota 100
+Create a new folder/ and upload it and can download it
+
+Connect button will show you a run command from any windows virtual machine on the same subscription and location
+
+DEMO 2
+-------
+on-Prem
+
+Map network drive:- \\azurecon2015.file.core.windows.net\demofileshare connect using different credentials and click finish
+key in the userid and password
+
+powershell
+Get-SMBConnection
+
+DEMO 3
+-------
+
+Azure file storage: files
+
+
+web service to connect azure file storage using SAS
+
+-------------------------------------------------------------
+
+--------------------
+- Azure Networking -
+--------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
