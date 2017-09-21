@@ -1,0 +1,111 @@
+--------------------------------------
+Getting started with Azure Functions
+--------------------------------------
+
+Concept of "Serverless code"
+
+Azure Functions = Events + Code
+e.g. Run a backgroud task on a regular schedule
+Process message in a queue or new Item in blob storage - sending an email
+Respond to a Http request or Webhook
+
+Azure functions bring in unique benefits - 
+Functions are built in top of Azure functions
+
+New Pricing model:- Pay as you go
+
+Serverless 
+----------
+Functions as a Service (FaaS) using lightweight service
+
+Example:-
+---------
+
+Web Requests - Web Server - Payment provider - Queues (Generate license send email)
+HTML, CCS, JS - New Purchase
+
+Report error web-hook - Validate license API
+
+Refatoring to Functions above example
+---------------------------------------
+
+Payment Provider Web-Hook -> Message in Queue
+Generate License Message  -> License File in Blob storage
+License File              -> Send email to customer
+Report error Web-Hook     -> New row in Table storage
+Validate license API      -> Database lookup
+Nightly scheduled task    -> Generate report
+
+Web server -> only response for HTML, CCS and JS 
+
+Concept of Function Apps ---> Group related function together so as to share the configuratio etc.
+
+*Experiments and Prototyping
+ Automating development processes
+ Decomposing or extending monolithic applications
+ Independent scaling
+ Adapters for integrating systems
+ Go Serverless!!!
+
+Websites
+--------- 
+troyhunt.com/azure-functions-in-practice
+
+DEMO
+----
+
+https://Functions387c0d4d.azurewebsites.net/api/HttpTriggerJS1?code=lAOjdKkTamRXKXUbtLO366geaBAt/dOP7domJhuSMgSilvZlekHGiA==
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
